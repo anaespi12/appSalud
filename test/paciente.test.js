@@ -1,7 +1,7 @@
 var assert = require('assert');
 var expect = require('chai').expect;
-var Paciente = require('../paciente.js');
-var Bascula = require('../bascula.js');
+var Paciente = require('../src/models/paciente.js');
+var Bascula = require('../src/models/bascula.js');
 
 describe('Paciente', () => {
   it('El constructor debe inicializar correctamente', function () {

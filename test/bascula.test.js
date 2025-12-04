@@ -1,6 +1,6 @@
 var assert = require('assert');
 var expect = require('chai').expect;
-var Bascula = require('../bascula.js');
+var Bascula = require('../src/models/bascula.js');
 
 
 describe('Bascula', () => {

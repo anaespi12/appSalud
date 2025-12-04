@@ -1,5 +1,5 @@
 const { expect } = require('chai');
-const Termometro = require('../termometro.js');
+const Termometro = require('../src/models/termometro.js');
 
 describe('Termometro', () => {
   let termometro;
