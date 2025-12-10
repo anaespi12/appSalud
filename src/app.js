@@ -3,11 +3,16 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const methodOverride = require('method-override');
 
+//rutas
+const pacienteRouter = require('./routes/paciente');
+const basculaRouter = require('./routes/bascula');
+
+
 const app = express();
 const PORT = 3000;
 
 
-
+//middlewares
 //Interpreta los datos de formulario HTML.
 app.use(bodyParser.urlencoded({extended: true}));
 //interpreta los datos en formato JSON
@@ -16,17 +21,22 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 //Permite usar ?_method=DELETE o _method en el cuerpo del form
 app.use(methodOverride('_method'));
-
+//----------------
 
 
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
-
+//rutas
 // Ruta principal
 app.get('/', (req, res) => {
   res.send('¡Hola Mundo desde Express!');
 });
+
+app.use('/paciente', pacienteRouter);
+app.use('/bascula', basculaRouter);
+
+//-----
 
 // Iniciar servidor
 app.listen(PORT, () => {
