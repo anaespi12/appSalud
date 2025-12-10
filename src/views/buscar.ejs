@@ -14,23 +14,15 @@
     <% if (paciente) { %>
         <h1>Detalles del Paciente</h1>
         <ul>
-            <li><strong>Id:</strong>
-                <%= paciente.id %>
-            </li>
-            <li><strong>Nombre:</strong>
-                <%= paciente.nombre %>
-            </li>
-            <li><strong>Apellidos:</strong>
-                <%= paciente.apellidos %>
-            </li>
-            <li><strong>Fecha Nacimiento:</strong>
-                <%= paciente.fechaNacimiento %>
-            </li>
+            <li><strong>Id:</strong> <%= paciente.id %></li>
+            <li><strong>Nombre:</strong> <%= paciente.nombre %></li>
+            <li><strong>Apellidos:</strong> <%= paciente.apellidos %></li>
+            <li><strong>Fecha Nacimiento:</strong> <%= new Date(paciente.fechaDeNacimiento).toLocaleDateString('es-Es') %></li>
 
         </ul>
         <% } %>
 
-            <a href="/">Volver a la lista de pacientes</a>
+        <a href="/">Volver a la lista de pacientes</a>
 
 </body>
 </html>
