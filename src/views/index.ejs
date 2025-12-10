@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title%>
+    </title>
+</head>
+
+<body>
+    <span style="color: red;">
+        <%= message %>
+    </span>
+
+    <h1>Lista de Pacientes</h1>
+
+    <ul>
+        <% pacientes.forEach(function(paciente) { %>
+            <li>
+                <strong>
+                    <%= paciente.nombre %>
+                    <%= paciente.apellidos %>
+                </strong>    
+            </li>
+            <% }); %>
+    </ul>
+</body>
+
+</html> 
