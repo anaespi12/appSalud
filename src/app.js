@@ -30,11 +30,11 @@ app.set('views', './src/views');
 //rutas
 // Ruta principal
 app.get('/', (req, res) => {
-  res.send('¡Hola Mundo desde Express!');
+  res.redirect('/pacientes');
 });
 
-app.use('/paciente', pacienteRouter);
-app.use('/bascula', basculaRouter);
+app.use('/', pacienteRouter);
+app.use('/', basculaRouter);
 
 //-----
 
