@@ -1,12 +1,24 @@
 const pacienteRepository = require('../repositories/pacienteRepository.js');
 
 const obtenerPaciente = async (req, res ) => {
-    const { id } = req.params;
-    const paciente = await pacienteRepository.obtenerPorId(id);
-    res.render('paciente', {
-        title: 'Detalles del Paciente',
-        paciente
-    });
+    
+    const id  = req.params.id;
+    if (!id) {
+        return res.status(400).send('El ID de paciente es obligatorio');
+    }
+    const paciente = await pacienteRepository.buscarPorId(id);
+    if (!paciente) {
+        return res.render('buscar', {
+            title: 'App Salud',
+            message: 'Error: Paciente no encontrado'});
+    }
+
+    //Si existe el paciente, lo mostramos
+    res.render('buscar', {
+        title: 'App Salud',
+        paciente,
+        message: 'Paciente encontrado'});
+            
 };
 
 const crearPaciente = async (req, res ) => {
