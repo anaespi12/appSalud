@@ -25,6 +25,8 @@
                 </strong>
                 <!-- Boton para ver el paciente-->
                 <a href="/paciente/<%= paciente.id %>">Ver</a>
+                <!-- Boton para actualizar el paciente-->
+                <a href="/paciente/editar/<%= paciente.id %>">Actualizar</a>
                 <!-- Boton para elimar el paciente-->
                 <form action="/paciente/<%= paciente.id %>?_method=DELETE" method="POST" style="display:inline;">
                     <button type="submit">Eliminar</button>
@@ -48,7 +50,7 @@
         <br>
         <button type="submit">Agregar Paciente</button>
     </form>
-    
+
 </body>
 
 </html>

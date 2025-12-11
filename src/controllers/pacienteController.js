@@ -38,8 +38,37 @@ const crearPaciente = async (req, res ) => {
         message: 'Paciente creado correctamente' 
     });
 };
+const mostrarFormularioActualizarPaciente = async (req, res) => {
+    const id = req.params.id;
+    const paciente = await pacienteRepository.buscarPorId(id);
+    if (!paciente) {
+        return res.render('/pacientes');
+    }
+    res.render('actualizarPaciente', {
+        title: 'App Salud',
+        paciente,
+        message: ''
+    });
+};
 const actualizarPaciente = async (req, res ) => {
-
+    const id = req.params.id;
+    const { nombre, apellidos, fechaDeNacimiento } = req.body;
+    if (!nombre || !apellidos || !fechaDeNacimiento) {
+        const paciente = await pacienteRepository.buscarPorId(id);
+        return res.render('actualizarPaciente', {
+            title: ' App Salud',
+            paciente,
+            message: 'Error: Todos los campos son obligatorios'});
+    }  
+    //Construir objeto paciente completo
+    const pacienteActualizado = {
+        id,
+        nombre,
+        apellidos,
+        fechaDeNacimiento
+    };
+    await pacienteRepository.actualizar(pacienteActualizado);
+    res.redirect('/pacientes'); 
 };
 
 const eliminarPaciente = async (req, res) => {
@@ -69,5 +98,6 @@ module.exports = {
     crearPaciente,
     actualizarPaciente,
     eliminarPaciente,
-    listarPaciente
+    listarPaciente,
+    mostrarFormularioActualizarPaciente
 };
