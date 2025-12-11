@@ -22,13 +22,36 @@ const obtenerPaciente = async (req, res ) => {
 };
 
 const crearPaciente = async (req, res ) => {
-
+    const { nombre, apellidos, fechaDeNacimiento } = req.body;
+    if (!nombre || !apellidos || !fechaDeNacimiento) {
+        return res.render('index', {
+            title: ' App Salud',
+            pacientes: await pacienteRepository.listar(),
+            message: 'Error: Todos los campos son obligatorios'});
+    }
+    //guardar el nuevo paciente
+    await pacienteRepository.guardar({ nombre, apellidos, fechaDeNacimiento });
+    const pacientes =  await pacienteRepository.listar();
+    res.render('index', { 
+        title: ' App Salud',
+        pacientes,
+        message: 'Paciente creado correctamente' 
+    });
 };
 const actualizarPaciente = async (req, res ) => {
 
 };
 
 const eliminarPaciente = async (req, res) => {
+    const id = req.params.id;
+    const eliminado = await pacienteRepository.eliminar(id);
+    const pacientes = await pacienteRepository.listar();
+    const message = eliminado ? 'Paciente eliminado correctamente' : 'Error: No se pudo eliminar el paciente';
+    res.render('index', { 
+        title: ' App Salud',
+        pacientes,
+        message 
+    });
 };
 
 
