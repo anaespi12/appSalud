@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title%></title>
-</head>
-<body>
-     <span style="color: red;">
-        <%= message %>
-    </span>
+<%- include('partials/head') %>
     <h1>Actualizar Paciente</h1>
     <form action="/paciente/<%= paciente.id %>?_method=PUT" method="POST">
         <label for="nombre">Nombre:</label>
@@ -24,5 +14,4 @@
     </form>
 
     <a href="/">Volver a la lista de pacientes</a>
-</body>
-</html>
+<%- include('partials/footer') %>

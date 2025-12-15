@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title%></title>
-</head>
-<body>
-    <span style="color: red;">
-        <%= message %>
-    </span>
+<%- include('partials/head') %>
 
     <% if (paciente) { %>
+
         <h1>Detalles del Paciente</h1>
         <ul>
             <li><strong>Id:</strong> <%= paciente.id %></li>
@@ -24,5 +14,4 @@
 
             <a href="/">Volver a la lista de pacientes</a>
 
-</body>
-</html>
+<%- include('partials/footer') %>
