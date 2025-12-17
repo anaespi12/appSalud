@@ -1,0 +1,97 @@
+<%- include('../partials/head') %>
+
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1>Termómetro de <%= paciente.nombre %> <%= paciente.apellidos %></h1>
+            <p class="text-muted">Gestión de temperatura corporal</p>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="/" class="btn btn-secondary">Volver</a>
+            <a href="/termometro/<%= paciente.id %>/agregar" class="btn btn-primary">Agregar Registro</a>
+        </div>
+    </div>
+
+    <% if (registros && registros.length > 0) { %>
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Temperatura Actual</h5>
+                        <p class="card-text h3"><%= tempActual %>°C</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Temperatura Máxima</h5>
+                        <p class="card-text h3"><%= tempMaxima %>°C</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Temperatura Mínima</h5>
+                        <p class="card-text h3"><%= tempMinima %>°C</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Total Registros</h5>
+                        <p class="card-text h3"><%= registros.length %></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5 class="mb-0">Conversión de Temperatura</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>Temperatura Actual en Fahrenheit:</strong> <%= fahrenheitActual %>°F</p>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Temperatura (°C)</th>
+                        <th>Fahrenheit (°F)</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% registros.forEach(function(registro) { %>
+                        <tr>
+                            <td><%= new Date(registro.fecha).toLocaleDateString('es-ES') %></td>
+                            <td><%= registro.temperatura %>°C</td>
+                            <td><%= registro.fahrenheit %>°F</td>
+                            <td>
+                                <span class="badge bg-<%= registro.badgeClass %>"><%= registro.estado %></span>
+                            </td>
+                            <td>
+                                <form action="/termometro/<%= paciente.id %>/<%= registro.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% } else { %>
+        <div class="alert alert-info" role="alert">
+            No hay registros de termómetro. <a href="/termometro/<%= paciente.id %>/agregar" class="alert-link">Agregar uno ahora</a>
+        </div>
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

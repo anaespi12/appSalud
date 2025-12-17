@@ -20,6 +20,8 @@
                     <td>
                         <a href="/paciente/<%= paciente.id %>" class="btn btn-sm btn-info">Ver</a>
                         <a href="/paciente/editar/<%= paciente.id %>" class="btn btn-sm btn-warning">Actualizar</a>
+                        <a href="/bascula/<%= paciente.id %>" class="btn btn-sm btn-success">Báscula</a>
+                        <a href="/termometro/<%= paciente.id %>" class="btn btn-sm btn-primary">Termómetro</a>
                         <form action="/paciente/<%= paciente.id %>?_method=DELETE" method="POST" style="display:inline;">
                             <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
                         </form>
