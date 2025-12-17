@@ -1,17 +1,26 @@
 <%- include('partials/head') %>
-    <h1>Actualizar Paciente</h1>
-    <form action="/paciente/<%= paciente.id %>?_method=PUT" method="POST">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="<%= paciente.nombre %>" required>
-        <br>
-        <label for="apellidos">Apellidos:</label>
-        <input type="text" id="apellidos" name="apellidos" value="<%= paciente.apellidos %>" required>
-        <br>
-        <label for="fechaDeNacimiento">Fecha de Nacimiento:</label>
-        <input type="date" id="fechaDeNacimiento" name="fechaDeNacimiento" value="<%= paciente.fechaDeNacimiento.toISOString().split('T')[0] %>" required>
-        <br>
-        <button type="submit">Actualizar Paciente</button>
+
+<div class="container mt-5">
+    <h1 class="mb-4">Actualizar Paciente</h1>
+    <form action="/paciente/<%= paciente.id %>?_method=PUT" method="POST" class="card p-4">
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="<%= paciente.nombre %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="apellidos" class="form-label">Apellidos:</label>
+            <input type="text" class="form-control" id="apellidos" name="apellidos" value="<%= paciente.apellidos %>" required>
+        </div>
+        <div class="mb-3">
+            <label for="fechaDeNacimiento" class="form-label">Fecha de Nacimiento:</label>
+            <input type="date" class="form-control" id="fechaDeNacimiento" name="fechaDeNacimiento" value="<%= paciente.fechaDeNacimiento.toISOString().split('T')[0] %>" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Actualizar Paciente</button>
     </form>
 
-    <a href="/">Volver a la lista de pacientes</a>
+    <div class="mt-4">
+        <a href="/" class="btn btn-secondary">Volver a la lista de pacientes</a>
+    </div>
+</div>
+
 <%- include('partials/footer') %>
